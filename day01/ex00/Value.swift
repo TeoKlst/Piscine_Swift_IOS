@@ -13,5 +13,5 @@ enum Value: Int {
     case Two    = 2
     case Ace    = 1
 
-    static let allValues = [Washers, Dryers, Toasters]
+    static let allValues = [King, Queen, Jack, Ten, Nine, Eight, Seven, Six, Five, Four, Three, Two, Ace]
 }
