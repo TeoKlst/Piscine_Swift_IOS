@@ -4,5 +4,5 @@ enum Color: String {
     case Clubs      = "green"
     case Diamonds   = "blue"
 
-    static let allColors = [Hearts, Spades, Clubs, Diamonds]
+    static let allColors : [Color] = [Hearts, Spades, Clubs, Diamonds]
 }
