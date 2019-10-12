@@ -55,7 +55,7 @@ class LoginViewController: UIViewController {
     
     func loadingIcon () {
         let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
-        activityIndicator.color = UIColor.black
+        activityIndicator.color = UIColor.white
         activityIndicator.center = CGPoint(x: self.view.bounds.size.width/2, y: self.view.bounds.size.height/2)
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
