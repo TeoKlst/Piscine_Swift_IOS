@@ -22,7 +22,27 @@ class ImageViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        validateIMG(url: image[0].url ?? URL(string: "404")!, fromController: self)
         print("End of code. The image will continue downloading in the background and it will be loaded when it ends.")
+    }
+    
+    func validateIMG(url: URL, fromController controller: UIViewController) {
+        let urlCompare = URL(string: "404")!
+        if (url == urlCompare) {
+            print ("ERROR IN URL")
+            let alert = UIAlertController(title: "Error", message: "Failed to load image from web", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertAction.Style.default, handler: nil))
+            controller.present(alert, animated: true, completion: nil)
+        } else {}
+    }
+    
+    func verifyUrl(urlString: String?) -> Bool {
+        if let urlString = urlString {
+            if let url = URL(string: urlString) {
+                return UIApplication.shared.canOpenURL(url)
+            }
+        }
+        return false
     }
     
     func createArray() -> [Image] {
@@ -35,6 +55,8 @@ class ImageViewController: UIViewController {
         let urlStringTwo = URL(string: "https://mymodernmet.com/wp/wp-content/uploads/2019/03/nat-geo-instagram-photo-contest-large.jpg")!
         let urlStringThree = URL(string: "https://parade.com/wp-content/uploads/2019/07/Apollo_21.jpg")!
         let urlStringFour = URL(string: "https://static.independent.co.uk/s3fs-public/thumbnails/image/2019/04/24/10/nat-geo-head.jpg")!
+        let urlEmpty:URL? = URL(string: "")
+        validateIMG(url: urlEmpty ?? URL(string: "404")!, fromController: self)
         
         let IMGOne = Image(image: yourImage, url: urlStringOne)
         let IMGTwo = Image(image: yourImage, url: urlStringTwo)

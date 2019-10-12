@@ -18,18 +18,19 @@ class ImageCollectionViewCell: UICollectionViewCell {
 //        pictureImageView.image = image.image
         
         let url = image.url
+//        validateIMG(url: url, fromController: self)
         downloadImage(from: url, activityView: activityViewer)
         pictureImageView.downloaded(from: image.url)
     }
     
-//    func validateIMG(url: URL) {
-//        let urlCompare = URL(string: "")!
-//        if (url == urlCompare) {
-//            let alert = UIAlertController(title: "Error", message: "Failed to load image from web", preferredStyle: UIAlertController.Style.alert)
-//            alert.addAction(UIAlertAction(title: "Click", style: UIAlertAction.Style.default, handler: nil))
-//            self.ImageViewController(alert, animated: true, completion: nil)
-//        } else {}
-//    }
+    func validateIMG(url: URL, fromController controller: UIViewController) {
+        let urlCompare = URL(string: "")!
+        if (url == urlCompare) {
+            let alert = UIAlertController(title: "Error", message: "Failed to load image from web", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertAction.Style.default, handler: nil))
+            controller.present(alert, animated: true, completion: nil)
+        } else {}
+    }
     
     func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
