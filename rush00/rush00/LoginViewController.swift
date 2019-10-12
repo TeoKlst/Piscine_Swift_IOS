@@ -33,14 +33,14 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBAction func loginButtonPress(_ sender: Any) {
 //        https://CeckUserHere
-        loadingIcon()
-        if usernameTextField.text! != "" && passwdTextField.text! != "" {
+        let test = loadingIconStart()
+        if usernameTextField.text! == "" && passwdTextField.text! == "" {
             loadHomeScreen()
+            loadingIconStop(activityIndicator: test)
         }
         else {
             let alert = AlertHelper()
             alert.showAlert(fromController: self)
-
         }
     }
     
@@ -53,17 +53,23 @@ class LoginViewController: UIViewController {
 //        if UIDevice.current.orientation.isLandscape {}
     }
     
-    func loadingIcon () {
+    func loadingIconStart () -> UIActivityIndicatorView {
         let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
         activityIndicator.color = UIColor.white
         activityIndicator.center = CGPoint(x: self.view.bounds.size.width/2, y: self.view.bounds.size.height/2)
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
+        return activityIndicator
+    }
+    
+    func loadingIconStop(activityIndicator: UIActivityIndicatorView) {
+        activityIndicator.stopAnimating()
     }
     
     func loadHomeScreen() {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let loggedInViewController = storyBoard.instantiateViewController(withIdentifier: "LoggedInViewController") as! LoggedInViewController
-        self.present(loggedInViewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(loggedInViewController, animated: true)
+//        self.present(loggedInViewController, animated: true, completion: nil)
     }
 }
